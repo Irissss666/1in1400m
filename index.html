@@ -6809,16 +6809,14 @@ function poster() {
     g.font = `30px ${SANS}`; g.fillStyle = '#7d6e62'; g.fillText(placeOf(p), 100, 385);
     g.fillStyle = '#c4505f'; g.font = `700 34px ${SANS}`; g.fillText('每' + sm.rarity.oneIn + '个孩子里的1个', 100, 440);
     // 享年
-    g.fillStyle = '#fbe1e3'; rr(g, 100, 480, 880, 170, 24); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke(); if (hs) dd(dHe, 932, 452, 46);
+    g.fillStyle = '#fbe1e3'; rr(g, 100, 480, 880, 130, 24); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke(); if (hs) dd(dHe, 932, 452, 46);
     g.fillStyle = '#1f1b18'; g.font = `800 56px ${KAI}`;
     const big = p.ending === 'ascend' ? p.deathAge + '岁 · 白日飞升' : p.ending === 'upload' ? p.deathAge + '岁 · 数字永生' : '2000—' + p.deathYear + ' · ' + p.deathAge + '岁';
     g.fillText(big, 130, 565);
-    g.font = `26px ${SANS}`; g.fillStyle = '#7d6e62'; let ct = p.ending === 'normal' || p.ending === 'infant' ? '终章：' + p.cause : ''; if (hs && ct.length > 15) ct = ct.slice(0, 15) + '…'; g.fillText(ct, 130, 600);
+    g.font = `26px ${SANS}`; g.fillStyle = '#7d6e62'; let ct = p.ending === 'normal' || p.ending === 'infant' ? '终章：' + p.cause : ''; if (ct.length > 10) ct = ct.slice(0, 10) + '…'; g.fillText(ct, 130, 600);
+    const ctW = ct ? g.measureText(ct).width + 24 : 0;
+    g.font = `24px ${SANS}`; g.fillStyle = '#9a8b7d'; g.fillText('最终净资产 ' + LIFE.wan(LIFE.netWorth(p)), 130 + ctW, 600);
     if (hs) { g.textAlign = 'right'; g.fillStyle = '#a8998b'; g.font = `24px ${SANS}`; g.fillText('一生幸福', 950, 532); g.fillStyle = '#c4505f'; g.font = `800 54px ${KAI}`; g.fillText(hs.avg.toFixed(1), 950 - g.measureText('/10').width - 4, 594); g.font = `26px ${SANS}`; g.fillStyle = '#a8998b'; g.fillText('/10', 950, 594); g.textAlign = 'left'; }
-    // 最终净资产（折合今天）
-    { const nwFinal = LIFE.netWorth(p), dy = p.deathYear || p.year, nwT = Math.round(nwFinal / LIFE.wageIdx(dy)), lbl = '最终净资产 ' + LIFE.wan(nwFinal);
-      g.font = `700 28px ${SANS}`; const lw = g.measureText(lbl).width; g.fillStyle = '#1f1b18'; g.fillText(lbl, 130, 635);
-      if (dy > 2026 && Math.abs(nwFinal - nwT) > 1) { g.font = `24px ${SANS}`; g.fillStyle = '#a8998b'; g.fillText('（折合今天约' + LIFE.wan(nwT) + '）', 130 + lw + 14, 635); } }
     // 关键词
     const d = hs ? dualData(p) : null;
     let x = 100, y = 680; g.font = `28px ${SANS}`;
