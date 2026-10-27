@@ -6848,10 +6848,10 @@ function poster() {
     }
     // 底部
     g.fillStyle = '#1f1b18'; g.font = `700 38px ${KAI}`; g.fillText('你会投胎成谁？', 100, 1300);
-    g.font = `24px ${SANS}`; g.fillStyle = '#a8998b'; g.fillText(XHS ? '小红书搜「14亿分之1」，活一次别人的人生' : '扫码投胎，活一次别人的人生', 100, 1340);
+    g.font = `24px ${SANS}`; g.fillStyle = '#a8998b'; g.fillText(XHS ? '小红书搜「14亿分之1」，活一次别人的人生' : '活一次别人的人生', 100, 1340);
     g.fillText(S.weird ? '含平行宇宙虚构内容' : '基于真实统计的模拟人生', 100, 1372);
     if (XHS) { g.save(); g.translate(905, 1295); g.rotate(-.06); g.fillStyle = '#fbe1e3'; rr(g, -95, -62, 190, 124, 22); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke(); g.fillStyle = '#1f1b18'; g.textAlign = 'center'; g.font = `800 40px ${KAI}`; g.fillText('14亿', 0, -8); g.font = `700 26px ${SANS}`; g.fillStyle = '#c4505f'; g.fillText('分之1', 0, 30); g.restore(); g.textAlign = 'left'; }
-    else drawQR(g, siteURL(), 830, 1220, 150);
+    else { const host = siteHost(); g.font = `700 30px ${SANS}`; const hw = g.measureText(host).width; g.save(); g.translate(905, 1295); g.rotate(-.04); g.fillStyle = '#fbe1e3'; rr(g, -hw / 2 - 26, -40, hw + 52, 80, 20); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke(); g.fillStyle = '#1f1b18'; g.textAlign = 'center'; g.fillText(host, 0, 10); g.restore(); g.textAlign = 'left'; }
     g.font = `700 38px ${KAI}`; dd(dSu, 100 + g.measureText('你会投胎成谁？').width + 8, 1262, 40); dd(dSt, 790, 1186, 40);
     const url = cv.toDataURL('image/png');
     S.modal = true;
@@ -6897,6 +6897,7 @@ function drawDual(g, d, x, y, w, h) {
   g.restore();
 }
 function siteURL() { if (SHARE_URL) return SHARE_URL; try { if (/^https?:/.test(location.protocol)) return location.origin + location.pathname; } catch (e) { } return ''; }
+function siteHost() { const u = siteURL(); if (!u) return '14亿分之1'; try { return new URL(u).host; } catch (e) { return u.replace(/^https?:\/\//, '').replace(/\/$/, ''); } }
 function drawQR(g, url, x, y, size) {
   g.fillStyle = '#fff'; rr(g, x - 12, y - 12, size + 24, size + 24, 14); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke();
   if (!url || typeof qrcode === 'undefined') { g.strokeStyle = '#d9cbb8'; g.setLineDash([6, 6]); g.strokeRect(x, y, size, size); g.setLineDash([]); g.fillStyle = '#a8998b'; g.font = '20px sans-serif'; g.textAlign = 'center'; g.fillText('上线后', x + size / 2, y + size / 2 - 8); g.fillText('自动生成二维码', x + size / 2, y + size / 2 + 22); g.textAlign = 'left'; return; }
