@@ -6846,12 +6846,11 @@ function poster() {
       const kh = LIFE.hapSummary(k); const t = k.deathAge + '岁 · ' + (k.cause.length > 7 ? k.cause.slice(0, 7) + '…' : k.cause) + (kh ? ' · 幸福' + kh.avg.toFixed(1) : '');
       g.textAlign = 'right'; g.fillText(t, 980, y); g.textAlign = 'left';
     }
-    // 底部
+    // 底部（不写任何网址/平台名，避免被当作导流内容限流）
     g.fillStyle = '#1f1b18'; g.font = `700 38px ${KAI}`; g.fillText('你会投胎成谁？', 100, 1300);
-    g.font = `24px ${SANS}`; g.fillStyle = '#a8998b'; g.fillText(XHS ? '小红书搜「14亿分之1」，活一次别人的人生' : '活一次别人的人生', 100, 1340);
+    g.font = `24px ${SANS}`; g.fillStyle = '#a8998b'; g.fillText('活一次别人的人生', 100, 1340);
     g.fillText(S.weird ? '含平行宇宙虚构内容' : '基于真实统计的模拟人生', 100, 1372);
-    if (XHS) { g.save(); g.translate(905, 1295); g.rotate(-.06); g.fillStyle = '#fbe1e3'; rr(g, -95, -62, 190, 124, 22); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke(); g.fillStyle = '#1f1b18'; g.textAlign = 'center'; g.font = `800 40px ${KAI}`; g.fillText('14亿', 0, -8); g.font = `700 26px ${SANS}`; g.fillStyle = '#c4505f'; g.fillText('分之1', 0, 30); g.restore(); g.textAlign = 'left'; }
-    else { const host = siteHost(); g.font = `700 30px ${SANS}`; const hw = g.measureText(host).width; g.save(); g.translate(905, 1295); g.rotate(-.04); g.fillStyle = '#fbe1e3'; rr(g, -hw / 2 - 26, -40, hw + 52, 80, 20); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke(); g.fillStyle = '#1f1b18'; g.textAlign = 'center'; g.fillText(host, 0, 10); g.restore(); g.textAlign = 'left'; }
+    g.save(); g.translate(905, 1295); g.rotate(-.06); g.fillStyle = '#fbe1e3'; rr(g, -95, -62, 190, 124, 22); g.fill(); g.strokeStyle = '#1f1b18'; g.lineWidth = 3; g.stroke(); g.fillStyle = '#1f1b18'; g.textAlign = 'center'; g.font = `800 40px ${KAI}`; g.fillText('14亿', 0, -8); g.font = `700 26px ${SANS}`; g.fillStyle = '#c4505f'; g.fillText('分之1', 0, 30); g.restore(); g.textAlign = 'left';
     g.font = `700 38px ${KAI}`; dd(dSu, 100 + g.measureText('你会投胎成谁？').width + 8, 1262, 40); dd(dSt, 790, 1186, 40);
     const url = cv.toDataURL('image/png');
     S.modal = true;
